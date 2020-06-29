@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <mat-form-field class="col-3">
+      <mat-label>Selecciona una opcion de busqueda</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option>None</mat-option>
+        <mat-option value="fecha">Fecha</mat-option>
+        <mat-option value="correo">Correo</mat-option>
+        <mat-option value="trackId">Track Id</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="col-6" *ngIf="selected == 'fecha'">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha Inicial</mat-label>
+          <input matInput [matDatepicker]="picker" (dateChange)="buscarPorFecha('fechaInicial', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div *ngIf="fechaInicial">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha Final</mat-label>
+          <input matInput [min]="fechaInicial" [max]="fechaFinalMax" [matDatepicker]="picker2"
+            (dateChange)="buscarPorFecha('fechaFinal', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 disabled="false" [startAt]="fechaInicial"></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+
+    <div class="col-6" *ngIf="selected == 'correo' || selected == 'trackId'">
+        <input #informacion type="text"  maxlength="50" informacion.value=''>
+        <button (click)="buscarPorTexto(informacion.value)" >Buscar</button>
+    </div>
+
+
+  </div>
+
+  <p>You selected: {{selected}}</p>
+
+</div>

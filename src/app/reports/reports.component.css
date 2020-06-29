@@ -1,0 +1,15 @@
+mat-label, mat-select, mat-option, mat-datepicker-toggle, mat-form-field{
+  color:black
+}
+
+.mat-select-value {
+  color: #000;
+}
+
+.not-empty-select.mat-selected {
+  color: green !important;
+}
+
+mat-form-field {
+  width: 200px;
+}
